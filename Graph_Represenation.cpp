@@ -67,7 +67,7 @@ public:
     }
     void DFS(int nodes,vector<int> adj[]){
         vector<int> visited(V, 0);
-        
+        //this for loop is for non-connected graph
         for(int i=0;i<nodes;i++){
             if(!visited[i]){
                 DFSutil(i,visited,adj);
