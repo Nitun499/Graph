@@ -21,8 +21,6 @@ void Union(int a,int b,vector<int>&parent,vector<int>&size){
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
 	int n;
 	cin>>n;
 	vector<int>parent(n+1,0),size(n+1,1);

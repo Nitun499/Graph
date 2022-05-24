@@ -15,23 +15,21 @@ void PrimsMst(int graph[][V],int src){
     int dist[V];
     int visited[V];
     int parent[V];
+    memset(parent,-1,sizeof(parent));
     for(int i=0;i<V;i++){
         dist[i]=INT_MAX;
         visited[i]=0;
     }
     dist[src]=0;
     parent[src]=-1;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+    pq.push({0,0});
    
     //run a loop for n-1 times
     for(int i=0;i<V-1;i++){
         //find min value vertex
-        int min=INT_MAX,u;
-        for(int j=0;j<V;j++){
-            if(!visited[j] && dist[j]<min){
-                min=dist[j];
-                u=j;
-            }
-        }
+       auto u=pq.top().second;
+       pq.pop();
         visited[u]=1;
         //update neighbours of mst value
         for(int k=0;k<V;k++){
@@ -39,6 +37,7 @@ void PrimsMst(int graph[][V],int src){
                 if(graph[u][k]<dist[k]){
                     dist[k]=graph[u][k];
                     parent[k]=u;
+                    pq.push({dist[k],k});
                 }
             }
         }
